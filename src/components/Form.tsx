@@ -1,19 +1,60 @@
-import React from 'react'
-import './Form.css';
+"use client";
+import { useState } from "react";
+import "./Form.css";
 
 const Form = () => {
+  const [title, setTitle] = useState("");
+  const [username, setUserName] = useState("");
+  const [content, setContent] = useState("");
 
-  
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    if (name === "title") {
+      setTitle(value);
+    } else if (name === "username") {
+      setUserName(value);
+    } else if (name === "content") {
+      setContent(value);
+    }
+  };
+
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    console.log("clicked");
+  };
+
   return (
-    <form className='form-container'>
+    <form className="form-container">
       <label htmlFor="title">Title</label>
-      <input type="title" id="title" placeholder='Type tite...'/>
+      <input
+        value={title}
+        name="title"
+        id="title"
+        onChange={handleChange}
+        placeholder="Type tite..."
+      />
       <label htmlFor="username">Username</label>
-      <input type="username" id="username" placeholder='Type username...' />
+      <input
+        value={username}
+        name="username"
+        onChange={handleChange}
+        id="username"
+        placeholder="Type username..."
+      />
       <label htmlFor="content">Content</label>
-      <textarea id="content" placeholder='Type content...'></textarea>
+      <textarea
+        value={content}
+        name="content"
+        id="content"
+        onChange={handleChange}
+        placeholder="Type content..."
+      ></textarea>
+      <button className="btn btn-neutral btn-wide" onClick={handleClick}>
+        Submit
+      </button>
     </form>
   );
-}
+};
 
-export default Form
+export default Form;
