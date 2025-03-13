@@ -1,12 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Form.css";
 
 const Form = () => {
   const [title, setTitle] = useState("");
   const [username, setUserName] = useState("");
   const [content, setContent] = useState("");
+  
 
+
+  
   const handleChange = (e: any) => {
     const { name, value } = e.target;
 

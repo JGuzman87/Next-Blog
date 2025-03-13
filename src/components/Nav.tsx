@@ -5,7 +5,7 @@ import './Nav.css'
 const Nav = () => {
   return (
     <>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-base-100 shadow-lg">
         <div className="flex-1">
           <Link href={"/"} className="btn btn-ghost text-xl">
             MyBlog
@@ -22,7 +22,7 @@ const Nav = () => {
                 <input
                   type="checkbox"
                   className="theme-controller"
-                  value="synthwave"
+                  value="dark"
                 />
 
                 {/* sun icon */}
@@ -47,9 +47,7 @@ const Nav = () => {
           </ul>
         </div>
       </div>
-      <nav className="nav-container">
-        
-      </nav>
+      <nav className="nav-container"></nav>
     </>
   );
 }
