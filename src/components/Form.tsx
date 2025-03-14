@@ -1,11 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState} from "react";
+import  {useRouter}  from "next/navigation";
+
 import "./Form.css";
 
 const Form = () => {
-  const [title, setTitle] = useState("");
-  const [username, setUserName] = useState("");
-  const [content, setContent] = useState("");
+
+const router = useRouter();
+ const [formInfo, setFormInfo ] = useState({title: '', username: '', content: ''})
   
 
 
@@ -13,25 +15,32 @@ const Form = () => {
   const handleChange = (e: any) => {
     const { name, value } = e.target;
 
-    if (name === "title") {
-      setTitle(value);
+    if (name === 'title' ) {
+      setFormInfo({...formInfo, title:value});
     } else if (name === "username") {
-      setUserName(value);
+      setFormInfo({...formInfo, username: value});
     } else if (name === "content") {
-      setContent(value);
+      setFormInfo({...formInfo, content: value});
     }
   };
 
   const handleClick = (e: any) => {
-    e.preventDefault();
-    console.log("clicked");
+   e.preventDefault()
+   localStorage.setItem("blogs", JSON.stringify(formInfo));
+    console.log(formInfo);
+    
+    setFormInfo({ title: "", username: "", content: "" });
+    router.push("/posts");
   };
+    
+
+    
 
   return (
-    <form className="form-container">
+    <form className="form-container shadow-lg">
       <label htmlFor="title">Title</label>
       <input
-        value={title}
+        value={formInfo.title}
         name="title"
         id="title"
         onChange={handleChange}
@@ -39,7 +48,7 @@ const Form = () => {
       />
       <label htmlFor="username">Username</label>
       <input
-        value={username}
+        value={formInfo.username}
         name="username"
         onChange={handleChange}
         id="username"
@@ -47,7 +56,7 @@ const Form = () => {
       />
       <label htmlFor="content">Content</label>
       <textarea
-        value={content}
+        value={formInfo.content}
         name="content"
         id="content"
         onChange={handleChange}

@@ -13,21 +13,26 @@ useEffect(() => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon/ditto"
-        );
+        const response = await fetch("https://catfact.ninja/fact");
         const fetchedData = await response.json();
         console.log(fetchedData)
         setData(fetchedData);
+        console.log(data);
       } catch (err) {
         console.error("Error fetching data:", err);
       }
+
+    
     };
 
-    console.log(data);
+    
 
 fetchData();
 }, [])
+
+  const handleClick = () => {
+    return console.log(data);
+  };
 
 
 
@@ -36,15 +41,9 @@ fetchData();
       <figure></figure>
       <div className="card-body">
         <h2 className="card-title">Random Quote</h2>
-        <ul>
-          <li>
-          {data
-            ? data.name
-            : "nothing to show"}</li>
-        </ul>
-
+        <p>{data ? data.fact : "nothing to display"}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+          <button className="btn btn-primary" onClick={handleClick}>Submit</button>
         </div>
       </div>
     </div>
