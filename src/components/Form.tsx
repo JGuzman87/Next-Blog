@@ -7,30 +7,15 @@ import "./Form.css";
 const Form = () => {
 
 const router = useRouter();
- const [formInfo, setFormInfo ] = useState({title: '', username: '', content: ''})
-  
 
-
-  
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-
-    if (name === 'title' ) {
-      setFormInfo({...formInfo, title:value});
-    } else if (name === "username") {
-      setFormInfo({...formInfo, username: value});
-    } else if (name === "content") {
-      setFormInfo({...formInfo, content: value});
-    }
-  };
 
   const handleClick = (e: any) => {
    e.preventDefault()
    localStorage.setItem("blogs", JSON.stringify(formInfo));
     console.log(formInfo);
-    
+     router.push("/posts");
     setFormInfo({ title: "", username: "", content: "" });
-    router.push("/posts");
+   
   };
     
 
