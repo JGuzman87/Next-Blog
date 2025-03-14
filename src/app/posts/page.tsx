@@ -9,7 +9,7 @@ const BlogPost = () => {
 interface Blog {
 title: string,
 username: string,
-comment: string
+content: string
 }
 //savePost uses interface Blog, nor null.  It starts at null
  const [savedPost, setSavedPost] = useState <Blog | null >(null);
@@ -42,7 +42,7 @@ comment: string
       <div className="card-body">
         <h2 className="card-title">{savedPost?.title}</h2>
         <p>{savedPost?.username}</p>
-        <p>{savedPost?.comment}</p>
+        <p>{savedPost?.content}</p>
         <div className="card-actions justify-end">
           <button className="btn btn-primary">Submit</button>
         </div>

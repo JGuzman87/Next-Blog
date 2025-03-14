@@ -8,7 +8,7 @@ const Form = () => {
 
 
 const router = useRouter();
- const [formInfo, setFormInfo ] = useState ({title: '', username: '', comment: ''})
+ const [formInfo, setFormInfo ] = useState ({title: '', username: '', content: ''})
   
 
 
@@ -17,12 +17,12 @@ const router = useRouter();
     const { name, value } = e.target;
 
     if (name === 'title' ) {
-      //set form info to previous
+      //set form info to previous with ... and dont overwrite
       setFormInfo({...formInfo, title:value});
     } else if (name === "username") {
       setFormInfo({...formInfo, username: value});
-    } else if (name === "comment") {
-      setFormInfo({...formInfo, comment: value});
+    } else if (name === "content") {
+      setFormInfo({...formInfo, content: value});
     }
   };
 
@@ -31,7 +31,7 @@ const router = useRouter();
    localStorage.setItem("blogs", JSON.stringify(formInfo));
     console.log(formInfo);
      router.push("/posts");
-    setFormInfo({ title: "", username: "", comment: "" });
+    setFormInfo({ title: "", username: "", content: "" });
    
   };
     
@@ -58,9 +58,9 @@ const router = useRouter();
       />
       <label htmlFor="content">Content</label>
       <textarea
-        value={formInfo.comment}
-        name="comment"
-        id="comment"
+        value={formInfo.content}
+        name="content"
+        id="content"
         onChange={handleChange}
         placeholder="Type content..."
       ></textarea>
