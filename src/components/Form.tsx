@@ -6,8 +6,9 @@ import "./Form.css";
 
 const Form = () => {
 
+
 const router = useRouter();
- const [formInfo, setFormInfo ] = useState({title: '', username: '', content: ''})
+ const [formInfo, setFormInfo ] = useState ({title: '', username: '', comment: ''})
   
 
 
@@ -20,8 +21,8 @@ const router = useRouter();
       setFormInfo({...formInfo, title:value});
     } else if (name === "username") {
       setFormInfo({...formInfo, username: value});
-    } else if (name === "content") {
-      setFormInfo({...formInfo, content: value});
+    } else if (name === "comment") {
+      setFormInfo({...formInfo, comment: value});
     }
   };
 
@@ -30,7 +31,7 @@ const router = useRouter();
    localStorage.setItem("blogs", JSON.stringify(formInfo));
     console.log(formInfo);
      router.push("/posts");
-    setFormInfo({ title: "", username: "", content: "" });
+    setFormInfo({ title: "", username: "", comment: "" });
    
   };
     
@@ -57,9 +58,9 @@ const router = useRouter();
       />
       <label htmlFor="content">Content</label>
       <textarea
-        value={formInfo.content}
-        name="content"
-        id="content"
+        value={formInfo.comment}
+        name="comment"
+        id="comment"
         onChange={handleChange}
         placeholder="Type content..."
       ></textarea>
