@@ -7,7 +7,23 @@ import "./Form.css";
 const Form = () => {
 
 const router = useRouter();
+ const [formInfo, setFormInfo ] = useState({title: '', username: '', content: ''})
+  
 
+
+  
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    if (name === 'title' ) {
+      //set form info to previous
+      setFormInfo({...formInfo, title:value});
+    } else if (name === "username") {
+      setFormInfo({...formInfo, username: value});
+    } else if (name === "content") {
+      setFormInfo({...formInfo, content: value});
+    }
+  };
 
   const handleClick = (e: any) => {
    e.preventDefault()
