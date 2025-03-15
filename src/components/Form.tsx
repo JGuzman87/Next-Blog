@@ -6,18 +6,13 @@ import "./Form.css";
 
 const Form = () => {
 
-
 const router = useRouter();
  const [formInfo, setFormInfo ] = useState ({title: '', username: '', content: ''})
-  
 
-
-  
   const handleChange = (e: any) => {
     const { name, value } = e.target;
 
     if (name === 'title' ) {
-      //set form info to previous with ... and dont overwrite
       setFormInfo({...formInfo, title:value});
     } else if (name === "username") {
       setFormInfo({...formInfo, username: value});
@@ -27,16 +22,22 @@ const router = useRouter();
   };
 
   const handleClick = (e: any) => {
-   e.preventDefault()
-   localStorage.setItem("blogs", JSON.stringify(formInfo));
-    console.log(formInfo);
-     router.push("/posts");
-    setFormInfo({ title: "", username: "", content: "" });
-   
-  };
+    e.preventDefault();
     
+    // Retrieve existing blogs from localStorage
+    const existingBlogs = JSON.parse(localStorage.getItem("blogs") || "[]");
+    
+    // Ensure it's an array before pushing new data
+    const updatedBlogs = Array.isArray(existingBlogs) ? [...existingBlogs, formInfo] : [formInfo];
 
+    // Store updated blogs array
+    localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
+
+    console.log(updatedBlogs);
+    router.push("/posts");
     
+    setFormInfo({ title: "", username: "", content: "" });
+  };
 
   return (
     <form className="form-container shadow-lg">

@@ -3,11 +3,12 @@
     themes: all;
 };
 
-.card p {
+.card  {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 50%;
   margin: auto;
-  color: white;
+  color: var(--theme);
 
 }
 

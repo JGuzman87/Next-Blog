@@ -1,58 +1,39 @@
 "use client"
 import {useEffect, useState} from 'react'
 
-
-
-
 const BlogPost = () => {
-  // any object stored in savePost must be a string
-interface Blog {
-title: string,
-username: string,
-content: string
-}
-//savePost uses interface Blog, nor null.  It starts at null
- const [savedPost, setSavedPost] = useState <Blog | null >(null);
-
- useEffect(() => {
-//assigned a constant to the items being retrieved from localStorage
- const storedPosts = localStorage.getItem('blogs');
+  interface Blog {
+    title: string,
+    username: string,
+    content: string
+  }
   
-//retrieved post type string / coverts to object.
-// retrieved post true, parse it as object, else retrieved post if null
-  const retrievedPosts  = storedPosts ? JSON.parse(storedPosts) : [];
-  setSavedPost(retrievedPosts)
-  console.log(retrievedPosts)
+  const [savedPosts, setSavedPosts] = useState<Blog[]>([]);
 
-
- 
- }, [])
+  useEffect(() => {
+    const storedPosts = localStorage.getItem('blogs');
+    const retrievedPosts = storedPosts ? JSON.parse(storedPosts) : [];
+    
+    setSavedPosts(Array.isArray(retrievedPosts) ? retrievedPosts : []);
+    console.log(retrievedPosts);
+  }, []);
   
-
-
- 
-
-
-
-
-
   return (
-    <div className="card bg-base-100 image-full w-96 shadow-sm">
-      <figure></figure>
-      <div className="card-body">
-        <h2 className="card-title">{savedPost?.title}</h2>
-        <p>{savedPost?.username}</p>
-        <p>{savedPost?.content}</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Submit</button>
+    <div>
+      {savedPosts.map((post, index) => (
+        <div key={index} className="card shadow-lg">
+          <div className="card-body justify-start">
+            <h2 className="card-title">{post.title}</h2>
+            <p>{post.username}</p>
+            <p>{post.content}</p>
+            <div className="card-actions justify-end">
+              <button className="btn btn-primary">Delete</button>
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
-
-    } 
-
-
-
+}
 
 export default BlogPost
