@@ -1,5 +1,6 @@
-"use client";
-import { useState} from "react";
+ "use client";
+import React from "react";
+import { useState } from "react";
 import  {useRouter}  from "next/navigation";
 
 import "./Form.css";
@@ -9,7 +10,7 @@ const Form = () => {
 const router = useRouter();
  const [formInfo, setFormInfo ] = useState ({title: '', username: '', content: ''})
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     if (name === 'title' ) {
@@ -21,7 +22,7 @@ const router = useRouter();
     }
   };
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     
     // Retrieve existing blogs from localStorage

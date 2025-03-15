@@ -21,7 +21,7 @@ const BlogPost = () => {
   return (
     <div>
       {savedPosts.map((post, index) => (
-        <div key={index} className="card shadow-lg">
+        <div key={index} className="card shadow-lg gap-10">
           <div className="card-body justify-start">
             <h2 className="card-title">{post.title}</h2>
             <p>{post.username}</p>
